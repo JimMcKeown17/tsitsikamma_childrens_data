@@ -245,17 +245,17 @@ mean_scores = filtered_df.groupby('School')[metric].mean().reset_index()
 custom_colors = {'Bambino': 'orange', 'Clarkson': 'orange', 'Vukani Day Care': 'orange'}
 
 # Define custom color mapping
-custom_colors = {'Bambino': 'orange', 'Clarkson': 'orange', 'Vukani Day Care': 'orange'}
+custom_colors = {'Bambino': 'feature', 'Clarkson': 'feature', 'Vukani Day Care': 'feature'}
 
 # Apply custom colors
-mean_scores['color'] = mean_scores['School'].apply(lambda x: custom_colors.get(x, 'blue'))
+mean_scores['color'] = mean_scores['School'].apply(lambda x: custom_colors.get(x, 'control'))
 
 fig = px.bar(mean_scores,
              x='School',
              y=metric,
              title=f'{metric} by School',
              labels={metric: 'Mean Literacy Score', 'School': 'School'},
-             color='color',  # Use the custom color column for coloring
+             color='color',
              color_discrete_map=custom_colors  # Apply the custom color mapping
             )
 fig.update_layout(xaxis_title='School',
@@ -288,13 +288,10 @@ else:
 mean_scores = filtered_df.groupby('School')[metric].mean().reset_index()
 
 # Define custom color mapping
-custom_colors = {'Bambino': 'orange', 'Clarkson': 'orange', 'Vukani Day Care': 'orange'}
-
-# Define custom color mapping
-custom_colors = {'Bambino': 'orange', 'Clarkson': 'orange', 'Vukani Day Care': 'orange'}
+custom_colors = {'Bambino': 'feature', 'Clarkson': 'feature', 'Vukani Day Care': 'feature'}
 
 # Apply custom colors
-mean_scores['color'] = mean_scores['School'].apply(lambda x: custom_colors.get(x, 'blue'))
+mean_scores['color'] = mean_scores['School'].apply(lambda x: custom_colors.get(x, 'control'))
 
 fig = px.bar(mean_scores,
              x='School',
@@ -335,9 +332,6 @@ mean_improvements = filtered_df.agg({
 mean_improvements_df = mean_improvements.reset_index()
 mean_improvements_df.columns = ['Metric', 'Mean Improvement']
 # Define custom color mapping
-
-# Apply custom colors
-mean_scores['color'] = mean_scores['School'].apply(lambda x: custom_colors.get(x, 'blue'))
 
 fig = px.bar(mean_improvements_df,
              x='Metric',
