@@ -315,7 +315,8 @@ st.header("Literacy Skills Gained Per Grade")
 
 grade_choice = st.selectbox('Select a Grade:', ('Grade R', 'Grade 1', 'Grade 2', 'Grade 3'), key='skills')
 
-filtered_df = children[children['Grade'] == grade_choice]
+df = children[children['School'] == "Clarkson"]
+filtered_df = df[df['Grade'] == grade_choice]
 
 mean_improvements = filtered_df.agg({
     "June - Letter Sounds Improvement": 'mean',
